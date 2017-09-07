@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .tab {
+                background-color: lightgrey;
+                height: 40px;
+                width: 52px;
+                margin: 0 1px;
+                position: relative;
+                float: left;
+                border-radius: 5px;
+                overflow: hidden;
+                transition: width 0.5s linear;
+            }
+            .tab.select {
+                width: 120px;
+                background-color: grey;
+            }
+            .tab:not(.select):hover {
+                cursor: pointer;
+            }
+            .tab .count {
+                height: 30px;
+                width: 30px;
+                line-height: 30px;
+                border-width: 1px;
+                border-style: solid;
+                text-align: center;
+                border-radius: 15px;
+                position: absolute;
+                left: 10px;
+                top: 3px;
+                color: white;
+                background-color: var(--myColor);
+            }
+            .tab.select .count {
+                left: 5px;
+                font-weight: bold;
+                background-color: lightgrey;
+                color: var(--myColor);
+            }
+            .tab .tab-name {
+                visibility: hidden;
+            }
+            .tab.select .tab-name {
+                height: 30px;
+                width: 80px;
+                margin: 3px;
+                position: absolute;
+                left: 40px;
+                top: 6px;
+                visibility: visible;
+                color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- use css variable to hold tab color -->
+        <div class = "tab select">
+            <div class = "count" style = "--myColor:blue">10</div>
+            <div class = "tab-name">Tab One</div>
+        </div>
+        <div class = "tab" style = "--myColor:green">
+            <div class = "count">20</div>
+            <div class = "tab-name">Tab Two</div>
+        </div>
+        <div class = "tab">
+            <div class = "count" style = "--myColor:red">30</div>
+            <div class = "tab-name">Tab Three</div>
+        </div>
+
+        <script type="text/javascript">
+            function tabClicked(event){
+                var selected = document.querySelector(".tab.select");
+                if (event.currentTarget !== selected){
+                    selected.classList.remove("select");
+                    event.currentTarget.classList.add("select");
+                }
+            }
+
+            // main body
+            var tabs = document.querySelectorAll(".tab");
+            for (var i = 0; i < tabs.length; i++){
+                tabs[i].addEventListener("click", tabClicked);
+            }
+        </script>
+    </body>
+</html>
